@@ -6,13 +6,39 @@
 
 
 void printAll(struct node* list) {
-    struct node* curr = list;
+    struct node* curr = list, * fast;
+    if(curr) fast = list->next;
+    
+    int count = 0;
     printf("List: ");
-    while (curr != NULL) {  // Watch Out: curr->next !=  NULL
+    while (curr && fast != curr) {  // Watch Out: curr->next !=  NULL
+        printf("%d ", curr->value);
+        curr = curr->next;
+        count++;
+
+        if(!fast || !fast->next) fast = NULL;
+        else fast = fast->next->next;
+    }
+
+    if(!fast) {
+        printf("\n");
+        return; //no cycle so we're done
+    }
+    
+    //we have cycle
+    int len = -looplesslength(list);
+
+    fast = list;
+    while (fast != curr->next) {
+        if(count++ < len) printf("%d ", curr->value);
+        fast = fast->next;
+        curr = curr->next;
+    }
+    while(count++ < len) {
         printf("%d ", curr->value);
         curr = curr->next;
     }
-    printf("\n");
+    printf("(loops back to %d)\n", fast->value);
 }
 
 struct node *add_to_list(struct node *list, int n) {
@@ -136,4 +162,41 @@ int nodupdata(struct node *list) {
         }
     }
     return 1;
+}
+
+int looplesslength(struct node* list) {
+    if(list == NULL) return 0;
+    else if (list->next == NULL) return 1;
+    else if (list->next == list) return -1;
+
+    struct node *slow = list, *fast = list->next;
+    int count = 0;
+    while(slow && fast != slow) {
+        count++;
+        slow = slow->next;
+        if(fast && fast->next) fast = fast->next->next;
+        else fast = NULL;
+    }
+
+    if(!fast) 
+        return count;
+
+    //we have a cycle
+    count = 0;
+    slow = list;
+
+    //find meeting point
+    while(slow != fast->next) {
+        count++;
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    //traverse cycle and increment count
+    while(slow != fast) {
+        count++;
+        slow = slow->next;
+    }
+
+    return -(count + 1);
 }

@@ -12,16 +12,24 @@ int main(void) {
     struct node *intlist = NULL;
     int i;
     
-    int array[] = {1,1,1,2,2,3,4,5,5,10,10,11,12,12,12};
+    int array[] = {10,10,9,9,8,5,5,5,4,3,3,2,1};
     for (i = 0; i < sizeof(array) / sizeof(*array); i++) {  
         intlist = add_to_list(intlist, array[i]);
     }
     
+    printf("Double list\n");
+    printAll(intlist);
+    doubleAll(intlist);
     printAll(intlist);
     doubleAll(intlist);
     printAll(intlist);
     
+    printf("\nDelete 10\n");
     intlist = deleteAll(intlist, 10);
+    printAll(intlist);
+
+    printf("Delete 9\n");
+    intlist = deleteAll(intlist, 9);
     printAll(intlist);
 
     int l1[] = {8,7,5,3,1};
@@ -31,10 +39,20 @@ int main(void) {
         ll1 = add_to_list(ll1, l1[i]);
         ll2 = add_to_list(ll2, l2[i]);
     }
-
+    
+    printf("\nMerge two lists\n");
+    printAll(ll1);
+    printAll(ll2);
     struct node *merged = merge(ll1, ll2);
     printAll(merged);
     
+    printf("\n");
+    printAll(merged);
+    printAll(intlist);
+    merged = merge(merged, intlist);
+    printAll(merged);
+
+    printf("\nCheck for duplicates\n");
     printAll(intlist);
     printDup(nodupdata(intlist));
     printAll(merged);
@@ -48,6 +66,19 @@ int main(void) {
 
     printAll(noDup);
     printDup(nodupdata(noDup));
+
+    printf("\nDetect loops with negative lengths\n");
+    printAll(noDup);
+    printf("length = %d\n", looplesslength(noDup));
+    
+    noDup = add_to_list(noDup, 6);
+    printAll(noDup);
+    printf("length = %d\n", looplesslength(noDup));
+    
+    struct node *loopStart = noDup->next;
+    loopStart->next->next->next->next->next->next = loopStart;
+    printAll(noDup);
+    printf("length = %d\n", looplesslength(noDup));
 
     return 0;
 }
