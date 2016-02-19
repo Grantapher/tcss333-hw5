@@ -53,14 +53,12 @@ int main(void) {
     printAll(merged);
 
     printf("\nCheck for duplicates\n");
-    printAll(intlist);
-    printDup(nodupdata(intlist));
     printAll(merged);
     printDup(nodupdata(merged));
 
     int arr[] = {1,2,3,4,5};
-    struct node *noDup;
-    for (i = 0; i < sizeof(arr) / sizeof(*arr); i++) {  
+    struct node *noDup = NULL;
+    for (i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {  
         noDup = add_to_list(noDup, arr[i]);
     }
 
