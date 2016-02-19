@@ -74,7 +74,7 @@ int main(void) {
     printf("length = %d\n", looplesslength(noDup));
     
     struct node *loopStart = noDup->next;
-    loopStart->next->next->next->next->next->next = loopStart;
+    loopStart->next->next->next->next->next = loopStart;
     printAll(noDup);
     printf("length = %d\n", looplesslength(noDup));
 
