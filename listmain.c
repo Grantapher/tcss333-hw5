@@ -24,12 +24,12 @@ int main(void) {
     doubleAll(intlist);
     printAll(intlist);
     
-    printf("\nDelete 10\n");
-    intlist = deleteAll(intlist, 10);
+    printf("\nDelete 1\n");
+    intlist = deleteAll(intlist, 1);
     printAll(intlist);
 
-    printf("Delete 9\n");
-    intlist = deleteAll(intlist, 9);
+    printf("Delete 5\n");
+    intlist = deleteAll(intlist, 5);
     printAll(intlist);
 
     int l1[] = {8,7,5,3,1};

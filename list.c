@@ -115,7 +115,7 @@ struct node* deleteAll(struct node *list, int n) {
 }
 
 struct node* doubleAll(struct node* list) {
-    struct node *cur = list, *prev = NULL;
+    struct node *cur = list;
     while (cur != NULL) {
         struct node *dup = malloc(sizeof(struct node));
         if (dup == NULL) {
