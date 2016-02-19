@@ -45,7 +45,7 @@ int main(void) {
     printAll(ll2);
     struct node *merged = merge(ll1, ll2);
     printAll(merged);
-    
+
     printf("\n");
     printAll(merged);
     printAll(intlist);
@@ -77,6 +77,10 @@ int main(void) {
     loopStart->next->next->next->next->next = loopStart;
     printAll(noDup);
     printf("length = %d\n", looplesslength(noDup));
+    loopStart->next->next->next->next->next = NULL;
+    
+    freeAll(&merged);
+    freeAll(&noDup);
 
     return 0;
 }

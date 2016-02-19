@@ -53,6 +53,14 @@ struct node *add_to_list(struct node *list, int n) {
     return new_node;
 }
 
+void freeAll(struct node **list) {
+    while(*list) {
+        struct node *temp = *list;
+        *list = (*list)->next;
+        free(temp);
+    }
+}
+
 void add_to_listP2P( struct node **list  ,int n) {
     struct node *new_node;
     new_node = malloc(sizeof(struct node));
