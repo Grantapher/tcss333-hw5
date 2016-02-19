@@ -14,6 +14,9 @@ void printAll(struct node* list);
 /* adds n to front of list */
 struct node *add_to_list(struct node *list, int n);
 
+/* frees the entire list */
+void freeAll(struct node **list);
+
 /* adds n to front of list, alternative version */
 void add_to_listP2P( struct node **list  ,int n);
 

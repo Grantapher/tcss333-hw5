@@ -1,2 +1,2 @@
-main: list.c listmain.c
-	gcc list.c listmain.c -o list
+main: list.c main.c
+	gcc list.c main.c -o list
