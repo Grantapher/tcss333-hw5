@@ -6,7 +6,7 @@
 
 
 void printAll(struct node* list) {
-    struct node* curr = list, * fast;
+    struct node* curr = list, *fast = NULL;
     if(curr) fast = list->next;
     
     int count = 0;
